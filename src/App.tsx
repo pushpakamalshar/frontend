@@ -7,6 +7,7 @@ import Askai from "./components/Askai.tsx";
 import LoginPage from "./components/Login.tsx";
 import RegistrationForm from "./components/Registration.tsx";
 import { AuthProvider } from "./context/Authcontext.tsx";
+// import Profile from "./components/Profile.tsx";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/askai" element={<Askai />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegistrationForm />} />
+            {/* <Route path="/profile" element={<Profile />} /> */}
           </Routes>
         </main>
       </div>

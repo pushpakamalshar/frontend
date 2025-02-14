@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+// import { useAuth } from "../context/Authcontext";
 const RegistrationForm = () => {
   const navigate = useNavigate();
+
   const [message, setMessage] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -15,7 +16,15 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const userData = {
+      firstName: firstname,
+      lastName: lastname,
+      email: email,
+      password: password,
+      bloodGroup: bloodGroup,
+      gender: gender,
+      dob: dob,
+    };
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auth/register",
@@ -31,6 +40,7 @@ const RegistrationForm = () => {
       );
 
       console.log(response.data);
+
       setMessage("Registration successful!");
       navigate("/login");
     } catch (error) {
@@ -162,7 +172,7 @@ const RegistrationForm = () => {
 
           <div className="text-center">
             <a href="/login" className="text-lg text-gray-700">
-              Already have an account?
+              Already have an account? <>Login</>
             </a>
           </div>
           <p className="text-center">{message}</p>

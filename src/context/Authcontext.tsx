@@ -1,4 +1,12 @@
 import React, { createContext, useContext, useState } from "react";
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  bloodGroup: string;
+  gender: string;
+  dob: string;
+}
 
 interface AuthContextType {
   isAuthenticated: boolean;

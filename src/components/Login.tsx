@@ -86,11 +86,11 @@ const LoginPage = () => {
           <div className="flex items-center justify-between mt-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-red-500 text-white rounded-full font-semibold hover:bg-red-600"
+              className="px-4 py-2 bg-red-500 text-white rounded-full cursor-pointer font-semibold hover:bg-red-600"
             >
               Login
             </button>
-            <Link to="/register">Don't Have an account?</Link>
+            <Link to="/register">Don't have an account? Register</Link>
           </div>
 
           {message && <p className="text-red-500 text-center">{message}</p>}

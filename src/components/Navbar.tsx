@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 
 import {
@@ -12,15 +12,24 @@ import "@fontsource/poppins";
 import { useAuth } from "../context/Authcontext";
 
 const Sidebar: React.FC = () => {
+  const navigate = useNavigate();
+  const handlelogout = () => {
+    logout();
+    navigate("/");
+  };
   const auth = useAuth();
   const { isAuthenticated, login, logout } = auth;
   return (
     <div className="h-screen w-64 bg-white shadow-lg p-5 fixed left-0 top-0">
-      <h2 className="text-2xl font-bold text-black font-[Poppins] mb-6">
-        Logo
-      </h2>
+      <Link
+        to="/"
+        className="text-2xl font-bold text-black font-[Poppins] mb-6 flex items-center"
+      >
+        <div className="text-red-600 bg-white">Health</div>
+        <div className="bg-red-600 text-white px-2 py-1 rounded-md">Tech</div>
+      </Link>
 
-      <nav className="flex flex-col space-y-4">
+      <nav className="flex flex-col space-y-4 gap-6 mt-3">
         <Link
           to="/"
           className="flex items-center gap-3 text-lg text-black hover:text-gray-600 transition duration-300 font-[Poppins]"
@@ -39,10 +48,11 @@ const Sidebar: React.FC = () => {
         >
           <AiOutlineCalendar /> Book Appointment
         </Link>
+
         <nav>
           {isAuthenticated ? (
             <button
-              onClick={logout}
+              onClick={handlelogout}
               className="flex items-center gap-3 cursor-pointer text-lg text-white bg-[#ff4757] px-3 py-2 rounded-md transition duration-300"
             >
               <CiLogout /> Logout

@@ -5,7 +5,7 @@ import { useAuth } from "../context/Authcontext";
 
 const Doctorslist = () => {
   const auth = useAuth();
-  const { isAuthenticated, login, logout } = auth;
+  const { isAuthenticated } = auth;
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -225,7 +225,7 @@ const Doctorslist = () => {
         <input
           type="text"
           placeholder="Search doctors"
-          className="w-full p-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md"
+          className="w-full p-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 shadow-md"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         ></input>
@@ -265,11 +265,11 @@ const Doctorslist = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-500 mt-4">No doctors found</p>
+            <p className="text-center text-gray-500 mt-4 ">No doctors found</p>
           )}
         </div>
       ) : (
-        <p>Please login to book appointement</p>
+        <p className="ml-4">Please login to book appointement</p>
       )}
     </div>
   );
