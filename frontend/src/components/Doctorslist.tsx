@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import img1 from "../assets/img1.png";
+import img3 from "../assets/im3.jpg";
+import { useAuth } from "../context/Authcontext";
+
 const Doctorslist = () => {
+  const auth = useAuth();
+  const { isAuthenticated } = auth;
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -13,6 +18,7 @@ const Doctorslist = () => {
       hospital: "Grande Hospital",
       experience: "15 years",
       degree: "MD, Cardiology",
+      img: { img3 },
       message:
         "Dr. John Smith is a seasoned Cardiologist with over 15 years of experience. He specializes in diagnosing and treating heart conditions, ensuring his patients receive the best possible care. His expertise spans everything from preventative cardiac care to advanced interventions. Dr. Smith believes in a holistic approach to heart health, focusing not only on medical treatment but also on lifestyle changes that promote long-term well-being.",
     },
@@ -221,48 +227,52 @@ const Doctorslist = () => {
         <input
           type="text"
           placeholder="Search doctors"
-          className="w-full p-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md"
+          className="w-full p-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 shadow-md"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         ></input>
       </div>
 
-      <div>
-        {selectdoctor.length > 0 ? (
-          selectdoctor.map((doctor) => (
-            <div key={doctor.id} className="mt-4 ml-4 mr-2.5">
-              <div className="w-full  p-4 my-1 bg-white shadow-md rounded-md grid grid-cols-2">
-                <div>
-                  <h3 className="mb-2">Doctors Name: {doctor.name}</h3>
+      {isAuthenticated ? (
+        <div>
+          {selectdoctor.length > 0 ? (
+            selectdoctor.map((doctor) => (
+              <div key={doctor.id} className="mt-4 ml-4 mr-2.5">
+                <div className="w-full  p-4 my-1 bg-white shadow-md rounded-md grid grid-cols-2">
+                  <div>
+                    <h3 className="mb-2">Doctors Name: {doctor.name}</h3>
 
-                  <p className="mb-2">Speciality: {doctor.speciality}</p>
-                  <h3 className="mb-2">Hospital:{doctor.hospital}</h3>
-                  <p className="mb-2">Experience: {doctor.experience}</p>
-                  <p className="mb-2">Degree: {doctor.degree}</p>
-                  <div className="justify-end flex mt-8 bg-[#ff4757] w-fit px-4 py-2 rounded-md text-white cursor-pointer">
-                    <button
-                      className="cursor-pointer"
-                      onClick={() =>
-                        navigate("/bookdoctor", { state: { doctor } })
-                      }
-                    >
-                      Book Now
-                    </button>
+                    <p className="mb-2">Speciality: {doctor.speciality}</p>
+                    <h3 className="mb-2">Hospital:{doctor.hospital}</h3>
+                    <p className="mb-2">Experience: {doctor.experience}</p>
+                    <p className="mb-2">Degree: {doctor.degree}</p>
+                    <div className="justify-end flex mt-8 bg-[#ff4757] w-fit px-4 py-2 rounded-md text-white cursor-pointer">
+                      <button
+                        className="cursor-pointer"
+                        onClick={() =>
+                          navigate("/bookdoctor", { state: { doctor } })
+                        }
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <img
+                      src={img1}
+                      className="w-[250px] h-[250px] rounded-full "
+                    />
                   </div>
                 </div>
-                <div className="flex justify-end">
-                  <img
-                    src={img1}
-                    className="w-[250px] h-[250px] rounded-full "
-                  />
-                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-gray-500 mt-4">No doctors found</p>
-        )}
-      </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 mt-4 ">No doctors found</p>
+          )}
+        </div>
+      ) : (
+        <p className="ml-4">Please login to book appointement</p>
+      )}
     </div>
   );
 };

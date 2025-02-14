@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Doctorslist from "./Doctorslist";
+import { useAuth } from "../context/Authcontext";
 
 const LoginPage = () => {
+  const { login } = useAuth();
   const [loggedin, setLoggedin] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
@@ -24,13 +25,15 @@ const LoginPage = () => {
 
       console.log(response.data);
       setMessage("Login successful!");
-      navigate("/");
+
+      login(response.data.user);
       setLoggedin(true);
+
+      navigate("/");
     } catch (error) {
       console.error(error.response?.data.errors || error.message);
       setMessage(error.response?.data.message || "Login failed");
 
-      // Clear the error message and inputs after 2 seconds
       setTimeout(() => {
         setMessage("");
         setEmail("");
@@ -47,7 +50,7 @@ const LoginPage = () => {
       </div>
 
       <div className="bg-gray-100 p-8 rounded-2xl shadow-lg w-96 mt-6">
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-lg font-semibold">
               Email:
@@ -83,11 +86,11 @@ const LoginPage = () => {
           <div className="flex items-center justify-between mt-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-red-500 text-white rounded-full font-semibold hover:bg-red-600"
+              className="px-4 py-2 bg-red-500 text-white rounded-full cursor-pointer font-semibold hover:bg-red-600"
             >
               Login
             </button>
-            <Link to="/register">Dont Have an account?</Link>
+            <Link to="/register">Don't have an account? Register</Link>
           </div>
 
           {message && <p className="text-red-500 text-center">{message}</p>}

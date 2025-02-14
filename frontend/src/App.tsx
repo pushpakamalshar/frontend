@@ -6,25 +6,34 @@ import Navbar from "./components/Navbar.tsx";
 import Askai from "./components/Askai.tsx";
 import LoginPage from "./components/Login.tsx";
 import RegistrationForm from "./components/Registration.tsx";
+import { AuthProvider } from "./context/Authcontext.tsx";
+import Goals from "./components/Goals.tsx";
+import Blogs from "./components/Blogs.tsx";
+// import Profile from "./components/Profile.tsx";
 
 const App = () => {
   return (
-    <div className="flex min-h-screen  w-full bg-[#f1f2f6]">
-      <aside className="w-64 bg-white  shadow-md bg">
-        <Navbar />
-      </aside>
+    <AuthProvider>
+      <div className="flex min-h-screen  w-full bg-[#f1f2f6]">
+        <aside className="w-64 bg-white  shadow-md bg">
+          <Navbar />
+        </aside>
 
-      <main className="flex-1 p-0">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/bookapointment" element={<Doctorlist />} />
-          <Route path="/bookdoctor" element={<Bookdoctors />} />
-          <Route path="/askai" element={<Askai />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationForm />} />
-        </Routes>
-      </main>
-    </div>
+        <main className="flex-1 p-0">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/bookapointment" element={<Doctorlist />} />
+            <Route path="/bookdoctor" element={<Bookdoctors />} />
+            <Route path="/askai" element={<Askai />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegistrationForm />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/goals" element={<Goals />} />
+            {/* <Route path="/profile" element={<Profile />} /> */}
+          </Routes>
+        </main>
+      </div>
+    </AuthProvider>
   );
 };
 
