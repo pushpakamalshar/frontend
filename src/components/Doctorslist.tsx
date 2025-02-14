@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import img1 from "../assets/img1.png";
+import img3 from "../assets/im3.jpg";
 import { useAuth } from "../context/Authcontext";
 
 const Doctorslist = () => {
@@ -17,6 +18,7 @@ const Doctorslist = () => {
       hospital: "Grande Hospital",
       experience: "15 years",
       degree: "MD, Cardiology",
+      img: { img3 },
       message:
         "Dr. John Smith is a seasoned Cardiologist with over 15 years of experience. He specializes in diagnosing and treating heart conditions, ensuring his patients receive the best possible care. His expertise spans everything from preventative cardiac care to advanced interventions. Dr. Smith believes in a holistic approach to heart health, focusing not only on medical treatment but also on lifestyle changes that promote long-term well-being.",
     },

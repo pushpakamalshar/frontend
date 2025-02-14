@@ -18,6 +18,9 @@ const Home = () => {
         setReport(response);
       } catch (error) {
         setMessage(error.response?.data.message || "Report failed");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       } finally {
         setLoading(false);
       }
@@ -69,11 +72,11 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 h-screen flex-1 mt-2 mb-2 rounded-md mr-1 shadow-2xl">
+      <div className="bg-gray-100 h-screen flex-1 mt-2 mb-2 rounded-md mr-1 shadow-2xl overflow-y-auto">
         <div className="text-center mt-3 font-bold font-[Poppins]">
           Your report appears here
         </div>
-        <p className="p-2 font-small">
+        <p className="p-2 font-small font-[Poppins]">
           {loading ? (
             <span className="relative flex size-3 ml-4">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-600 opacity-75"></span>

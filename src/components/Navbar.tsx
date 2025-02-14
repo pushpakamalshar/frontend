@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
+import { MdArticle } from "react-icons/md";
+import { GoGoal } from "react-icons/go";
 
 import {
   AiOutlineHome,
@@ -41,6 +43,20 @@ const Sidebar: React.FC = () => {
           className="flex items-center gap-3 text-lg text-black hover:text-gray-600 transition duration-300 font-[Poppins]"
         >
           <AiOutlineRobot /> Diagnosis with AI
+        </Link>
+        <Link
+          to="/goals"
+          className="flex items-center gap-3 text-lg text-black hover:text-gray-600 transition duration-300 font-[Poppins]"
+        >
+          <GoGoal />
+          Goals
+        </Link>
+        <Link
+          to="/blogs"
+          className="flex items-center gap-3 text-lg text-black hover:text-gray-600 transition duration-300 font-[Poppins]"
+        >
+          <MdArticle />
+          Blogs
         </Link>
         <Link
           to="/bookapointment"

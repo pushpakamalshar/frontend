@@ -7,6 +7,8 @@ import Askai from "./components/Askai.tsx";
 import LoginPage from "./components/Login.tsx";
 import RegistrationForm from "./components/Registration.tsx";
 import { AuthProvider } from "./context/Authcontext.tsx";
+import Goals from "./components/Goals.tsx";
+import Blogs from "./components/Blogs.tsx";
 // import Profile from "./components/Profile.tsx";
 
 const App = () => {
@@ -25,6 +27,8 @@ const App = () => {
             <Route path="/askai" element={<Askai />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegistrationForm />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/goals" element={<Goals />} />
             {/* <Route path="/profile" element={<Profile />} /> */}
           </Routes>
         </main>
